@@ -55,7 +55,6 @@
 import { cars } from "./cars.data";
 import styles from "./Home.module.css";
 
-//commit
 function Home() {
   return (
     <div>
@@ -71,7 +70,10 @@ function Home() {
             />
             <div className={styles.info}>
               <h2>{car.name}</h2>
-              <p>$100 000</p>
+              <p>{new Intl.NumberFormat('ru-RU', {
+                style: 'currency',
+                currency: 'USD',
+              }).format(car.price)}</p>
               <button>Read more</button>
             </div>
           </div>
