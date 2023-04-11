@@ -11,4 +11,10 @@ export const cars = [
     "price": 22545,
     "image": "http://localhost:4200/images/2.jpg"
   },
+  {
+    "id": 3,
+    "name": "Honda Civic2",
+    "price": 15545,
+    "image": "http://localhost:4200/images/2.jpg"
+  },
 ]

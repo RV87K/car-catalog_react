@@ -52,32 +52,27 @@
 // 	)
 // }
 
+import { useMemo } from "react";
+import CarItem from "./car-item/CarItem";
 import { cars } from "./cars.data";
 import styles from "./Home.module.css";
+import CreateCarForm from "./create-car-form/CreateCarForm";
 
 function Home() {
+  const filteredCars = useMemo(
+    () => cars.filter(car => car.price > 20000) ,[]
+    );
+
   return (
     <div>
       <h1>Cars catalog</h1>
+      <CreateCarForm/>
       <div>
-        {cars.map(car  => (
-          <div key={car.id} className={styles.item}>
-            <div
-              className={styles.image}
-              style={{
-                backgroundImage: `url(${car.image})`,
-              }}
-            />
-            <div className={styles.info}>
-              <h2>{car.name}</h2>
-              <p>{new Intl.NumberFormat('ru-RU', {
-                style: 'currency',
-                currency: 'USD',
-              }).format(car.price)}</p>
-              <button>Read more</button>
-            </div>
-          </div>
-        ))}
+        {filteredCars.length ? (
+          filteredCars.map((car) => <CarItem key={car.id} car={car} />)
+        ) : (
+          <p>There are no cars</p>
+        )}
       </div>
     </div>
   );
